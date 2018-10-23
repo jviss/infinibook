@@ -5,7 +5,7 @@ import {Subject} from 'rxjs';
 
 declare let require: any;
 const Web3 = require('web3');
-const ControllerAddress = '0x5f0ecdb1023c465fbb00dcf651775583eb277ee7'
+// const ControllerAddress = '0x5f0ecdb1023c465fbb00dcf651775583eb277ee7'
 const controller_artifacts = require('../../../build/contracts/Controller.json');
 // const ControllerABI = [{"constant": true,"inputs": [{"name": "","type": "bytes32"}],"name": "genres","outputs": [{"name": "gName","type": "bytes32"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"constant": false,"inputs": [{"name": "words","type": "bytes32"},{"name": "genre","type": "bytes32"},{"name": "story","type": "bytes32"}],"name": "addExcerpt","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "gName","type": "bytes32"}],"name": "getStories","outputs": [{"name": "","type": "bytes32[]"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "gName","type": "bytes32"},{"name": "sName","type": "bytes32"}],"name": "createStory","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [{"name": "gName","type": "bytes32"},{"name": "sName","type": "bytes32"}],"name": "getStory","outputs": [{"name": "","type": "bytes32"},{"name": "","type": "bytes32[]"}],"payable": false,"stateMutability": "nonpayable","type": "function"}]
 declare let window: any;

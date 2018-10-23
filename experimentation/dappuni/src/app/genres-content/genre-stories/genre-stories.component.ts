@@ -28,6 +28,7 @@ export class GenreStoriesComponent implements OnInit {
   ngOnInit() {
     console.log(this.genreName);
     this.watchAccount();
+    this.getStories();
   }
 
   watchAccount() {
@@ -69,5 +70,25 @@ export class GenreStoriesComponent implements OnInit {
     this.stories.push(this.newStoryName);
     elem.value = "";
     butt.disabled = false;
+  }
+
+  async getStories() {
+    if (!this.account) {
+      this.account = this.web3Service.getAccount();
+      console.log(this.account);
+    }
+    let gname = this.web3Service.getWeb3().utils.utf8ToHex(this.genreName);
+
+    this.web3Service.getController().then((controller) => {
+      controller.defaults({ from: this.account });
+      return controller.deployed();
+    }).then((deployedController) => {
+      return deployedController.getStories(gname);
+    }).then((stories) => {
+      stories.forEach(story => {
+        console.log(story);
+        this.stories.push(this.web3Service.getWeb3().utils.toAscii(story));
+      });
+    });
   }
 }
