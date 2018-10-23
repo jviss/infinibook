@@ -6,11 +6,7 @@ import {Subject} from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
 const ControllerAddress = '0xdd1fa5352d97bdc50c3296e1918357ef82c65faa'
-const ControllerABI = [{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"genres","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":true,"inputs":[{"name":"name","type":"bytes32"}],"name":"getGenre","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"words","type":"bytes32"},{"name":"genre","type":"bytes32"},{"name":"story","type":"bytes32"}],"name":"addExcerpt","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}];
-const GenreABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"storyNames","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"stories","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"n","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":false,"inputs":[{"name":"sname","type":"bytes32"}],"name":"createStory","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"sname","type":"bytes32"}],"name":"getStory","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getStories","outputs":[{"name":"","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"}];
-const StoryABI = [{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":false,"inputs":[{"name":"_words","type":"bytes32"}],"name":"addWords","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getExcerpts","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"}];
-const ExcerptABI = [{"constant":true,"inputs":[],"name":"words","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"w","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":true,"inputs":[],"name":"getWords","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"}];
-
+const ControllerABI = [{"constant": true,"inputs": [{"name": "","type": "bytes32"}],"name": "genres","outputs": [{"name": "gName","type": "bytes32"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"constant": false,"inputs": [{"name": "words","type": "bytes32"},{"name": "genre","type": "bytes32"},{"name": "story","type": "bytes32"}],"name": "addExcerpt","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "gName","type": "bytes32"}],"name": "getStories","outputs": [{"name": "","type": "bytes32[]"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "gName","type": "bytes32"},{"name": "sName","type": "bytes32"}],"name": "createStory","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [{"name": "gName","type": "bytes32"},{"name": "sName","type": "bytes32"}],"name": "getStory","outputs": [{"name": "","type": "bytes32"},{"name": "","type": "bytes32[]"}],"payable": false,"stateMutability": "nonpayable","type": "function"}]
 declare let window: any;
 
 @Injectable()
@@ -93,27 +89,27 @@ export class Web3Service {
       this.controllerContract = contract({'abi': ControllerABI});
       this.controllerContract.setProvider(this.web3.currentProvider);
     }
-    
+
     return this.controllerContract.at(ControllerAddress);
   }
-
-  public async getGenre(gAddress: string) {
-    var gcontract = contract({'abi': GenreABI});
-    gcontract.setProvider(this.web3.currentProvider);
-    // gcontract.defaults({from: this.web3.eth.coinbase});
-    return gcontract.at(gAddress);
-  }
-
-  public async getStory(sAddress: string) {
-    var scontract = contract({'abi': StoryABI});
-    scontract.setProvider(this.web3.currentProvider);
-    // scontract.defaults({from: this.web3.eth.coinbase});
-    return scontract.at(sAddress);
-  }
-
-  public async getExcerpt(eAddress: string) {
-    var econtract = contract({'abi': ExcerptABI});
-    econtract.setProvider(this.web3.currentProvider);
-    return econtract.at(eAddress);
-  }
+  //
+  // public async getGenre(gAddress: string) {
+  //   var gcontract = contract({'abi': GenreABI});
+  //   gcontract.setProvider(this.web3.currentProvider);
+  //   // gcontract.defaults({from: this.web3.eth.coinbase});
+  //   return gcontract.at(gAddress);
+  // }
+  //
+  // public async getStory(sAddress: string) {
+  //   var scontract = contract({'abi': StoryABI});
+  //   scontract.setProvider(this.web3.currentProvider);
+  //   // scontract.defaults({from: this.web3.eth.coinbase});
+  //   return scontract.at(sAddress);
+  // }
+  //
+  // public async getExcerpt(eAddress: string) {
+  //   var econtract = contract({'abi': ExcerptABI});
+  //   econtract.setProvider(this.web3.currentProvider);
+  //   return econtract.at(eAddress);
+  // }
 }
