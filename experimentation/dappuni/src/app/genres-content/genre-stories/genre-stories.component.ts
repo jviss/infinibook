@@ -20,10 +20,21 @@ export class GenreStoriesComponent implements OnInit {
 
   newStoryName: string = "";
 
+  accounts;
+  account;
+
   constructor(private web3Service: Web3Service) { }
 
   ngOnInit() {
     console.log(this.genreName);
+    this.watchAccount();
+  }
+
+  watchAccount() {
+    this.web3Service.accountsObservable.subscribe((accounts) => {
+      this.accounts = accounts;
+      this.account = accounts[0];
+    });
   }
 
   async createNewStory() {
@@ -41,20 +52,22 @@ export class GenreStoriesComponent implements OnInit {
     }
 
     var controller = await this.web3Service.getController();
-    await controller.createStory(this.genreName, this.newStoryName);
+    controller.defaults({ from: this.account });
+    console.log(controller);
+
+    const deployedController = await controller.deployed();
+    let gname = this.web3Service.getWeb3().utils.utf8ToHex(this.genreName);
+    let sname = this.web3Service.getWeb3().utils.utf8ToHex(this.newStoryName);
+
+    if (!this.account) {
+      this.account = this.web3Service.getAccount();
+      console.log(this.account);
+    }
+    const transaction = await deployedController.createStory.sendTransaction(gname, sname, {from: this.account});
+    // console.log(transaction);
     
     this.stories.push(this.newStoryName);
     elem.value = "";
     butt.disabled = false;
-
-    // this.web3Service.getController().then((ControllerInstance) => {
-    //   console.log(ControllerInstance);
-
-    //   return ControllerInstance.createStory(this.genreName, this.newStoryName);
-    // }).then(() => {
-    //   this.stories.push(this.newStoryName);
-    //   elem.value = "";
-    //   butt.disabled = false;
-    // });
   }
 }

@@ -30,11 +30,16 @@ export class Web3Service {
     return this.web3;
   }
 
+  public getAccount() {
+    return this.accounts[0];
+  }
+
   public bootstrapWeb3() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof window.web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
       this.web3 = new Web3(window.web3.currentProvider);
+      this.web3.defaultAccount = this.web3.eth.accounts[0];
     } else {
       console.log('No web3? You should consider trying MetaMask!');
 
@@ -42,6 +47,7 @@ export class Web3Service {
       Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+      this.web3.defaultAccount = this.web3.eth.accounts[0];
     }
 
     setInterval(() => this.refreshAccounts(), 100);
@@ -56,11 +62,12 @@ export class Web3Service {
 
     const contractAbstraction = contract(artifacts);
     contractAbstraction.setProvider(this.web3.currentProvider);
+    contractAbstraction.defaults({from: this.web3.eth.accounts[0]});
     return contractAbstraction;
 
   }
 
-  private refreshAccounts() {
+  public refreshAccounts() {
     this.web3.eth.getAccounts((err, accs) => {
       console.log('Refreshing accounts');
       if (err != null) {
@@ -89,11 +96,10 @@ export class Web3Service {
     if (!this.controllerContract) {
       await this.artifactsToContract(controller_artifacts).then((ControllerAbstraction) => {
         this.controllerContract = ControllerAbstraction;
-        this.controllerContract.setProvider(this.web3.currentProvider);
       });
     }
     // console.log(this.controllerContract);
-    return this.controllerContract.at(ControllerAddress);
+    return this.controllerContract;
   }
   //
   // public async getGenre(gAddress: string) {
