@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Web3Service } from '../../util/web3.service';
 
 declare let require: any;
-const genre_artifacts = require('../../../../build/contracts/Genre.json');
+// const genre_artifacts = require('../../../../build/contracts/Genre.json');
 
 @Component({
   selector: 'app-genre-stories',
@@ -23,17 +23,16 @@ export class GenreStoriesComponent implements OnInit {
   constructor(private web3Service: Web3Service) { }
 
   ngOnInit() {
-    this.web3Service.artifactsToContract(genre_artifacts)
-      .then((GenreAbstraction) => {
-        this.Genre = GenreAbstraction;
-      });
     console.log(this.genreName);
   }
 
-  createNewStory() {
+  async createNewStory() {
     let elem = document.getElementById("newStoryInput") as HTMLInputElement;
+    let butt = document.getElementById("submit-button") as HTMLButtonElement;
+
+    butt.disabled = true;
+
     this.newStoryName = elem.value;
-    elem.value = "";
     console.log(this.newStoryName);
 
     if (this.newStoryName.length < 3) {
@@ -41,22 +40,21 @@ export class GenreStoriesComponent implements OnInit {
       return;
     }
 
-    this.web3Service.getController().then((instance) => {
-      console.log(instance)
-      return instance.getGenre(this.genreName);
-    }).then((genreAddress) => {
-      console.log(genreAddress);
-      // return genre.createStory(this.newStoryName);
+    var controller = await this.web3Service.getController();
+    await controller.createStory(this.genreName, this.newStoryName);
+    
+    this.stories.push(this.newStoryName);
+    elem.value = "";
+    butt.disabled = false;
 
-      this.web3Service.getGenre(genreAddress).then((genre) => {
-        
-        console.log(genre);
-        // const encoded = new Buffer(this.newStoryName).toString('hex');
-        return genre.createStory(this.newStoryName);
-      }).then((storyAddress) => {
-        console.log(storyAddress);
-      });
-    })
+    // this.web3Service.getController().then((ControllerInstance) => {
+    //   console.log(ControllerInstance);
 
+    //   return ControllerInstance.createStory(this.genreName, this.newStoryName);
+    // }).then(() => {
+    //   this.stories.push(this.newStoryName);
+    //   elem.value = "";
+    //   butt.disabled = false;
+    // });
   }
 }

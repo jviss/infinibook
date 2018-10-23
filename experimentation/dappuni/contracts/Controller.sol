@@ -31,7 +31,7 @@ contract Controller {
         return genres[gName].sNames;
     }
 
-    function createStory(bytes32 gName, bytes32 sName)  {
+    function createStory(bytes32 gName, bytes32 sName) public {
         if(genres[gName].storyNames[sName]) revert("Story name exists");
 
         genres[gName].sNames.push(sName);
@@ -43,7 +43,7 @@ contract Controller {
         genres[gName].stories[sName] = _s;
     }
 
-    function getStory(bytes32 gName, bytes32 sName) returns (bytes32,bytes32[]) {
+    function getStory(bytes32 gName, bytes32 sName) public returns (bytes32,bytes32[]) {
         Story memory s = genres[gName].stories[sName];
         return (s.sName,s.excerpts);
     }
