@@ -1,6 +1,6 @@
 <!-- *ngIf="getDisplay(genres[0])" -->
 <div *ngIf="storiesLoaded">
-    <mat-card class="stories" *ngFor="let storyName of stories">
+    <mat-card class="stories" (click)="onClick(storyName)" *ngFor="let storyName of stories">
         <mat-card-header>
             <mat-card-title>
                 <h3>
