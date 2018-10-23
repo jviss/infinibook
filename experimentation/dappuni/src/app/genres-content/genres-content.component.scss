@@ -1,0 +1,76 @@
+.genres {
+    padding: 0; 
+    margin: 1%;
+    max-width: 44%;
+    height: 30em;
+    float: left;
+}
+
+.genre-image {
+    width: 100%;
+    object-fit: cover !important;
+    opacity: 0.6;
+    cursor: pointer;
+    filter: alpha(opacity=40);
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;    
+}
+.genre-image:hover {
+    opacity: 0.9;
+}
+
+.back-button {
+    position:fixed;
+	// width:60px;
+    // height:60px;
+    top: 50%;
+    left: 1%;
+    z-index: 100;
+	background: rgba($color: #000000, $alpha: 0.8);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	// box-shadow: 2px 2px 3px #999;
+}
+
+.mat-card-header { 
+    justify-content: center;
+}
+
+.stories-overlay {
+    position: absolute;
+    max-width: 100%;
+    width: 100%;
+    height: 90%;
+    // background-color: black;
+    top: 9.5%;
+    left: 0;
+    padding: 0;
+    overflow: scroll;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 1%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: lightgray; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}

@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <span>InfiniBook</span>
+    
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+            
+    <!-- <button mat-button [matMenuTriggerFor]="appMenu">
+        <h3>Address</h3>
+    </button>
+    <mat-menu class="address-field" #appMenu="matMenu">
+        <button mat-menu-item *ngFor="let account of accounts">{{account}}</button>
+    </mat-menu> -->
+
+    <span style="text-align:center; font-size:0.8em">{{currentAccount}}</span>
+
+    <mat-icon svgIcon="ether-icon"></mat-icon>
+    <span>{{currAccBalance}}</span>
+
+</mat-toolbar>
+
+<app-genres-content></app-genres-content>
+
+<!-- <app-meta-sender></app-meta-sender> -->

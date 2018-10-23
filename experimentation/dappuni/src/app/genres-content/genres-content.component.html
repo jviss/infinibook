@@ -1,0 +1,71 @@
+
+<div *ngIf="displaying" class="back-button">
+    <button mat-button (click)="backClicked()">
+        <h3>Back</h3>
+    </button>
+</div>
+
+<div *ngIf="getDisplay(genres[0])" >
+    <mat-card id="scifi" class="genres" (click)="onClick(genres[0])">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>
+                   {{genres[0]}}
+                </h3>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="genre-image" mat-card-image src="../../assets/genres/scifi.jpg" alt="Sci-Fi Image">
+        <div *ngIf="displaying" class="stories-overlay">
+            <app-genre-stories [genre]="genres[0]"></app-genre-stories>
+        </div>
+    </mat-card>
+</div>
+
+<div *ngIf="getDisplay(genres[1])">
+    <mat-card id="adventure" class="genres" (click)="onClick(genres[1])">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>
+                    {{genres[1]}}
+                </h3>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="genre-image" mat-card-image src="../../assets/genres/adventure.jpg" alt="Adventure Image">
+        <div *ngIf="displaying" class="stories-overlay">
+            <app-genre-stories [genre]="genres[1]"></app-genre-stories>
+        </div>
+    </mat-card>
+</div>
+
+<div *ngIf="getDisplay(genres[2])">
+    <mat-card id="fantasy" class="genres" (click)="onClick(genres[2])">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>
+                    {{genres[2]}}
+                </h3>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="genre-image" mat-card-image src="../../assets/genres/fantasy.jpg" alt="Fantasy Image">
+        <div *ngIf="displaying" class="stories-overlay">
+            <app-genre-stories [genre]="genres[2]"></app-genre-stories>
+        </div>
+    </mat-card>
+</div>
+
+<div *ngIf="getDisplay(genres[3])">
+    <mat-card id="erotica" class="genres" (click)="onClick(genres[3])">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>
+                    {{genres[3]}}
+                </h3>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="genre-image" mat-card-image src="../../assets/genres/erotica.jpg" alt="Erotica Image">
+        <div *ngIf="displaying" class="stories-overlay">
+            <app-genre-stories [genre]="genres[3]"></app-genre-stories>
+        </div>
+    </mat-card>
+</div>
+    

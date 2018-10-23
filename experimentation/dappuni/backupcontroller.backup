@@ -1,0 +1,91 @@
+pragma solidity 0.4.24;
+
+contract Controller {
+
+    mapping(bytes32 => Genre) public genres;
+    
+    constructor() public {
+        genres["Science Fiction"] = new Genre("Science Fiction");
+        genres["Fantasy"] = new Genre("Fantasy");
+        genres["Adventure"] = new Genre("Adventure");
+        genres["Erotica"] = new Genre("Erotica");
+    }
+    
+    function getGenre(bytes32 name) public view returns (Genre) {
+        return genres[name];
+    }
+
+    function addExcerpt (bytes32 words, bytes32 genre, bytes32 story) public {
+        Genre _g = genres[genre];
+        Story _s = _g.getStory(story);
+        _s.addWords(words);
+    }
+    
+    // function createStory(bytes32 gname, bytes32 sname) public returns (Story) {
+    //     return genres[gname].createStory(sname);
+    // }
+
+    // function getStories(bytes32 gname) public view returns (bytes32[]) {
+    //     return genres[gname].getStories();
+    // }
+}
+
+contract Genre {
+    
+    bytes32 public name;
+    
+    constructor (bytes32 n) public {
+        name = n;
+    }
+    
+    mapping(bytes32 => Story) public stories;
+    mapping(bytes32 => bool) public storyNames;
+    bytes32[] snames;
+
+    function createStory(bytes32 sname) public returns (Story) {
+        if(storyNames[sname]) revert("Story name exists");
+
+        snames.push(sname);
+
+        storyNames[sname] = true;
+
+        stories[sname] = new Story();
+        return stories[sname];
+    }
+
+    function getStory(bytes32 sname) public view returns (Story) {
+        return stories[sname];
+    }
+
+    function getStories() public view returns (bytes32[]) {
+        return snames;
+    }
+}
+contract Story {
+
+    address[] excerpts;
+
+    constructor () public {
+    }
+    
+    function addWords (bytes32 _words) public {
+        address newExcerpt = new Excerpt(_words);
+        excerpts.push(newExcerpt);
+    }
+    
+    function getExcerpts() public view returns (address[]) {
+        return excerpts;
+    }
+}
+contract Excerpt {
+
+    bytes32 public words;
+
+    constructor (bytes32 w) public {
+        words = w;
+    }
+
+    function getWords() public view returns (bytes32) {
+        return words;
+    }
+}
