@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Web3Service } from '../util/web3.service';
 
 @Component({
   selector: 'app-stories',
@@ -6,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stories.component.scss']
 })
 export class StoriesComponent implements OnInit {
+
+  @Input('story-name') storyName: string;
+
+  storyLoaded: boolean = true;
+
+  excerpts: string[] = [];
 
   constructor() { }
 

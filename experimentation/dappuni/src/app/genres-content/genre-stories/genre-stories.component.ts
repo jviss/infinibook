@@ -21,6 +21,7 @@ export class GenreStoriesComponent implements OnInit {
   currentStory:string = null;
 
   newStoryName: string = "";
+  displaying: bool = false;
 
   accounts;
   account;
@@ -122,5 +123,6 @@ export class GenreStoriesComponent implements OnInit {
       }
     }
     this.currentStory = storyName;
+    displaying = true;
   }
 }

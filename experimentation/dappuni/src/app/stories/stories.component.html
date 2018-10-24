@@ -1,36 +1,28 @@
 <div *ngIf="storyLoaded">
-    <mat-card class="stories" *ngFor="let storyName of stories" (click)="openStory(storyName)">
-        <!-- <div *ngIf="getDisplay(storyName)"> -->
-        <mat-card-header>
-            <mat-card-title>
-                <h3>
-                    {{storyName}}
-                </h3>
-            </mat-card-title>
-        </mat-card-header>
-        <!-- </div> -->
+    <mat-card class="excerpts" *ngFor="let excerpt of excerpts" (click)="openStory(excerpt)">
+        <mat-card-content>
+               {{excerpt}}
+        </mat-card-content>
     </mat-card>
-<mat-card id="create-story-card" class="stories">
+<mat-card id="create-excerpt-card" class="excerpts">
     <mat-card-header>
         <mat-card-title>
             <h3>
-               Create Story
+               Create Excerpt
             </h3>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content class="card-content">
-      Create a new story!
+      Create a new excerpt!
     </mat-card-content>
     <mat-card-actions class="card-content">
-      <form name="newStoryForm" class="new-story-form">
-          <mat-form-field class="story-name-input">
-            <input matInput type="text" id="newStoryInput">
+      <form name="newExcerptForm" class="new-excerpt-form">
+          <mat-form-field class="excerpt-name-input">
+            <textarea matInput type="text" id="newExcerptInput">
           </mat-form-field>
-
           <!-- <span class="example-fill-remaining-space"></span> -->
-
-          <button id="submit-button" mat-button (click)="createNewStory()" >
-            Submit Name
+          <button id="submit-button" mat-button (click)="createNewExcerpt()" >
+            Submit Excerpt
           </button>
         </form>
     </mat-card-actions>
