@@ -1,5 +1,5 @@
 .stories {
-    padding: 0; 
+    padding: 0;
     margin: 1%;
     max-width: 48%;
     width: 48%;
@@ -12,7 +12,7 @@
 }
 
 .card-content {
-    padding: 0; 
+    padding: 0;
     margin-left: 2%;
     max-width: 96%;
     width: 96%;
@@ -28,8 +28,21 @@
     width: 70%;
     float: left;
 }
+
+.stories-overlay {
+    position: absolute;
+    max-width: 100%;
+    width: 100%;
+    height: 30em;
+    // background-color: black;
+    top: 9.5%;
+    left: 0;
+    padding: 0;
+    overflow: scroll;
+}
+
 .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
+    /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
 }
@@ -45,17 +58,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: lightgray; 
+    background: lightgray;
     border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
+    background: #b30000;
 }

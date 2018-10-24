@@ -11,7 +11,7 @@ declare let require: any;
   styleUrls: ['./genre-stories.component.scss'],
 })
 export class GenreStoriesComponent implements OnInit {
-  
+
   @Input('genre') genreName: string;
 
   Genre: any;
@@ -21,7 +21,7 @@ export class GenreStoriesComponent implements OnInit {
   currentStory:string = null;
 
   newStoryName: string = "";
-  displaying: bool = false;
+  displaying: boolean = false;
 
   accounts;
   account;
@@ -69,7 +69,7 @@ export class GenreStoriesComponent implements OnInit {
     }
     const transaction = await deployedController.createStory.sendTransaction(gname, sname, {from: this.account});
     // console.log(transaction);
-    
+
     this.stories.push(this.newStoryName);
     elem.value = "";
     butt.disabled = false;
@@ -119,10 +119,10 @@ export class GenreStoriesComponent implements OnInit {
         // elem.style.marginRight = "8%";
         elem.style.maxWidth = "90%";
         elem.style.width = "90%"
-        elem.style.height = "auto"
+        elem.style.height = "45em"
       }
     }
     this.currentStory = storyName;
-    displaying = true;
+    this.displaying = true;
   }
 }
