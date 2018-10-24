@@ -19,6 +19,8 @@ export class GenreStoriesComponent implements OnInit {
   storiesLoaded: boolean = true;
   stories: string[] = [];
   currentStory:string = null;
+  currindex:number = 0;
+  indices = {};
 
   newStoryName: string = "";
   displaying: boolean = false;
@@ -48,10 +50,11 @@ export class GenreStoriesComponent implements OnInit {
     butt.disabled = true;
 
     this.newStoryName = elem.value;
-    console.log(this.newStoryName);
+    console.log("genre-stories.components:51" + this.newStoryName);
 
     if (this.newStoryName.length < 3) {
       alert("Story name too short");
+      butt.disabled = false;
       return;
     }
 
@@ -67,10 +70,11 @@ export class GenreStoriesComponent implements OnInit {
       this.account = this.web3Service.getAccount();
       console.log(this.account);
     }
-    const transaction = await deployedController.createStory.sendTransaction(gname, sname, {from: this.account});
+    const transaction = await deployedController.createStory(gname, sname);
     // console.log(transaction);
 
     this.stories.push(this.newStoryName);
+    this.indices[this.newStoryName] = this.currindex++;
     elem.value = "";
     butt.disabled = false;
   }
@@ -89,8 +93,9 @@ export class GenreStoriesComponent implements OnInit {
       return deployedController.getStories(gname);
     }).then((stories) => {
       stories.forEach(story => {
-        console.log(story);
+        console.log("genre-stories.components:93" + story);
         this.stories.push(this.web3Service.getWeb3().utils.toAscii(story));
+        this.indices[this.web3Service.getWeb3().utils.toAscii(story)] = this.currindex++;
       });
     });
   }
@@ -109,8 +114,8 @@ export class GenreStoriesComponent implements OnInit {
     for (var i = 0; i < selements.length; i++) {
       var elem = selements[i] as HTMLElement;
       var elemh3s = elem.getElementsByTagName('h3');
-      console.log((elemh3s[0] as HTMLElement).innerHTML.trim());
-      console.log(storyName.trim());
+      console.log("genre-stories.components:113" + (elemh3s[0] as HTMLElement).innerHTML.trim());
+      console.log("genre-stories.components:114 " + storyName.trim());
       if ((elemh3s[0] as HTMLElement).innerHTML.trim() !== storyName.trim()) {
         elem.style.visibility = 'hidden';
       } else {

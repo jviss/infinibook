@@ -1,5 +1,5 @@
 .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
+    /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
@@ -9,15 +9,21 @@
     margin: 0;
     text-align: center;
     font-size: 0.75em;
+    font-family: 'Libre Baskerville', serif;
+
 }
 
 .address-field {
-    min-width: 410px !important; 
+    min-width: 410px !important;
     width: 410px;
+    font-family: 'Libre Baskerville', serif;
+
   }
-  
+
 
 mat-toolbar {
     height: 5em;
 	border-radius:2px;
+  font-family: 'Libre Baskerville', serif;
+
 }

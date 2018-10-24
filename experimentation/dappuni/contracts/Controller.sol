@@ -3,7 +3,7 @@ pragma solidity 0.4.24;
 contract Controller {
 
     mapping(bytes32 => Genre) public genres;
-    
+
     constructor() public {
         Genre storage sf;
         sf.gName = "Science Fiction";
@@ -19,7 +19,7 @@ contract Controller {
         genres["Erotica"] = e;
 
     }
-    
+
 
     function addExcerpt (bytes32 words, bytes32 genre, bytes32 story) public {
         Genre _g = genres[genre];
@@ -40,12 +40,13 @@ contract Controller {
 
         Story storage _s;
         _s.sName = sName;
+        _s.excerpts = new bytes32[](0);
         genres[gName].stories[sName] = _s;
     }
 
-    function getStory(bytes32 gName, bytes32 sName) public returns (bytes32,bytes32[]) {
-        Story memory s = genres[gName].stories[sName];
-        return (s.sName,s.excerpts);
+    function getExcerpts(bytes32 gName, bytes32 sName) public view returns (bytes32[]) {
+        // Story memory s = genres[gName].stories[sName];
+        return genres[gName].stories[sName].excerpts;
     }
 
     struct Genre {
@@ -61,4 +62,3 @@ contract Controller {
     }
 
 }
-

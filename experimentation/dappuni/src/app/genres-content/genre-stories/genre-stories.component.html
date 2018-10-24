@@ -11,7 +11,7 @@
         </mat-card-header>
         <!-- </div> -->
         <div *ngIf="displaying" class="stories-overlay">
-            <app-stories [story-name]="storyName"></app-stories>
+            <app-stories [story-name]="storyName" [genre]="genreName" [num]="indices[storyName]"></app-stories>
         </div>
     </mat-card>
     <mat-card id="create-story-card" class="stories">
