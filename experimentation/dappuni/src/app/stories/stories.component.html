@@ -1,0 +1,38 @@
+<div *ngIf="storyLoaded">
+    <mat-card class="stories" *ngFor="let storyName of stories" (click)="openStory(storyName)">
+        <!-- <div *ngIf="getDisplay(storyName)"> -->
+        <mat-card-header>
+            <mat-card-title>
+                <h3>
+                    {{storyName}}
+                </h3>
+            </mat-card-title>
+        </mat-card-header>
+        <!-- </div> -->
+    </mat-card>
+<mat-card id="create-story-card" class="stories">
+    <mat-card-header>
+        <mat-card-title>
+            <h3>
+               Create Story
+            </h3>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      Create a new story!
+    </mat-card-content>
+    <mat-card-actions class="card-content">
+      <form name="newStoryForm" class="new-story-form">
+          <mat-form-field class="story-name-input">
+            <input matInput type="text" id="newStoryInput">
+          </mat-form-field>
+
+          <!-- <span class="example-fill-remaining-space"></span> -->
+
+          <button id="submit-button" mat-button (click)="createNewStory()" >
+            Submit Name
+          </button>
+        </form>
+    </mat-card-actions>
+</mat-card>
+</div>

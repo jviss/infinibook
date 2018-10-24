@@ -1,15 +1,17 @@
 <!-- *ngIf="getDisplay(genres[0])" -->
 <div *ngIf="storiesLoaded">
-    <mat-card class="stories" (click)="onClick(storyName)" *ngFor="let storyName of stories">
-        <mat-card-header>
-            <mat-card-title>
-                <h3>
-                   {{storyName}}
-                </h3>
-            </mat-card-title>
-        </mat-card-header>
-    </mat-card>
-    <mat-card class="stories">
+        <mat-card class="stories" *ngFor="let storyName of stories" (click)="openStory(storyName)">
+            <!-- <div *ngIf="getDisplay(storyName)"> -->
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>
+                        {{storyName}}
+                    </h3>
+                </mat-card-title>
+            </mat-card-header>
+            <!-- </div> -->
+        </mat-card>
+    <mat-card id="create-story-card" class="stories">
         <mat-card-header>
             <mat-card-title>
                 <h3>

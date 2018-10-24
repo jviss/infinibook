@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Web3Service } from '../util/web3.service';
+import { CardCommunicationService } from '../util/card-communication.service';
 
 @Component({
   selector: 'app-genres-content',
@@ -17,7 +18,7 @@ export class GenresContentComponent implements OnInit {
 
   displaying: boolean = false;
 
-  constructor(private web3Service: Web3Service) { }
+  constructor(private web3Service: Web3Service, private cardComm: CardCommunicationService) { }
 
   ngOnInit() {
   }

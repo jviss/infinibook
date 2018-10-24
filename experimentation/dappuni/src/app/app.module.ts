@@ -20,12 +20,14 @@ import {
 } from '@angular/material';
 import { GenresContentComponent } from './genres-content/genres-content.component';
 import { GenreStoriesComponent } from './genres-content/genre-stories/genre-stories.component';
+import { StoriesComponent } from './stories/stories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GenresContentComponent,
-    GenreStoriesComponent
+    GenreStoriesComponent,
+    StoriesComponent
   ],
   imports: [
     BrowserAnimationsModule,
